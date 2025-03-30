@@ -41,9 +41,9 @@
     "README.md"
   ],
   "scripts": {
-    "build": "rm -rf dist && npm run build:esm && npm run build:cjs && cp ./src/index.d.ts ./dist/index.d.ts",
-    "build:cjs": "BUILD_FORMAT=cjs vite build",
-    "build:esm": "BUILD_FORMAT=esm vite build",
+    "build": "rimraf dist && npm run build:esm && npm run build:cjs && cpx ./src/index.d.ts ./dist/",
+    "build:cjs": "cross-env BUILD_FORMAT=cjs vite build",
+    "build:esm": "cross-env BUILD_FORMAT=esm vite build",
     "start": "npm run build:esm -- --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -53,6 +53,9 @@
   "devDependencies": {
     "@babel/preset-env": "^7.1.2",
     "@rollup/plugin-babel": "^6.0.4",
+    "cpx": "^1.5.0",
+    "cross-env": "^7.0.3",
+    "rimraf": "^6.0.1",
     "vite": "^6.0.7",
     "vite-plugin-external": "^4.3.1",
     "vue": "^3.3.4"
